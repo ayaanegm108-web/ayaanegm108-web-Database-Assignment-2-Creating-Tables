@@ -1,3 +1,7 @@
+CREATE  DATABASE BidNile
+GO
+
+
 CREATE SCHEMA Membership;   
 GO
 CREATE SCHEMA Logistics;    
@@ -113,7 +117,6 @@ CREATE TABLE Catalog.Category
     NameAr           NVARCHAR(50)  NOT NULL,
     CommissionPct    DECIMAL(4,2)  NOT NULL,
     ParentCategoryId INT           NULL,
-
     CONSTRAINT PK_Category PRIMARY KEY (CategoryId),
     CONSTRAINT UQ_Category_NameEn UNIQUE (NameEn),
     CONSTRAINT CK_Category_CommissionPct CHECK (CommissionPct BETWEEN 0 AND 30),
@@ -145,7 +148,7 @@ CREATE TABLE Catalog.Item
 
 
 --Photo
-CREATE TABLE Catalog.Photo
+CREATE TABLE Catalog.ItemPhoto
 (
     ItemId  INT          NOT NULL,
     PhotoNo TINYINT      NOT NULL,
@@ -207,3 +210,149 @@ CREATE TABLE Sales.AuctionFollower
 
     CONSTRAINT PK_AuctionFollower PRIMARY KEY (MemberId, AuctionId)
 );
+
+
+
+
+
+--Alter
+
+ALTER TABLE Membership.Member
+    ADD CONSTRAINT FK_Member_City
+    FOREIGN KEY (CityId) REFERENCES Membership.City (CityId);
+GO
+
+
+ALTER TABLE Membership.Member
+    ADD CONSTRAINT FK_Member_Member
+    FOREIGN KEY (InvitedByMemberId) REFERENCES Membership.Member (MemberId);
+GO
+
+
+
+
+ALTER TABLE Membership.Wallet
+    ADD CONSTRAINT FK_Wallet_Member
+    FOREIGN KEY (MemberId) REFERENCES Membership.Member (MemberId);
+GO
+
+
+ALTER TABLE Logistics.Warehouse
+    ADD CONSTRAINT FK_Warehouse_City
+    FOREIGN KEY (CityId) REFERENCES Membership.City (CityId);
+GO
+
+
+
+ALTER TABLE Logistics.Warehouse
+    ADD CONSTRAINT FK_Warehouse_Employee
+    FOREIGN KEY (ManagerId) REFERENCES Logistics.Employee (MemberId);
+GO
+
+
+ALTER TABLE Logistics.Employee
+    ADD CONSTRAINT FK_Employee_Member
+    FOREIGN KEY (MemberId) REFERENCES Membership.Member (MemberId);
+GO
+
+
+
+
+ALTER TABLE Logistics.Employee
+    ADD CONSTRAINT FK_Employee_Warehouse
+    FOREIGN KEY (WarehouseId) REFERENCES Logistics.Warehouse (WarehouseId);
+GO
+
+
+
+
+
+ALTER TABLE Catalog.Category
+    ADD CONSTRAINT FK_Category_Category
+    FOREIGN KEY (ParentCategoryId) REFERENCES Catalog.Category (CategoryId);
+GO
+
+
+
+
+ALTER TABLE Catalog.Item
+    ADD CONSTRAINT FK_Item_Member_Seller
+    FOREIGN KEY (SellerId) REFERENCES Membership.Member (MemberId);
+GO
+
+
+
+
+ALTER TABLE Catalog.Item
+    ADD CONSTRAINT FK_Item_Member_Inspector
+    FOREIGN KEY (InspectorId) REFERENCES Membership.Member (MemberId);
+GO
+
+
+
+
+
+ALTER TABLE Catalog.Item
+    ADD CONSTRAINT FK_Item_Category
+    FOREIGN KEY (CategoryId) REFERENCES Catalog.Category (CategoryId);
+GO
+
+
+
+
+
+ALTER TABLE Catalog.Item
+    ADD CONSTRAINT FK_Item_Warehouse
+    FOREIGN KEY (WarehouseId) REFERENCES Logistics.Warehouse (WarehouseId);
+GO
+
+
+
+
+ALTER TABLE Catalog.ItemPhoto
+    ADD CONSTRAINT FK_ItemPhoto_Item
+    FOREIGN KEY (ItemId) REFERENCES Catalog.Item (ItemId)
+    ON DELETE CASCADE;
+GO
+
+
+
+
+ALTER TABLE Sales.Auction
+    ADD CONSTRAINT FK_Auction_Item
+    FOREIGN KEY (ItemId) REFERENCES Catalog.Item (ItemId);
+GO
+
+
+
+
+ALTER TABLE Sales.Bid
+    ADD CONSTRAINT FK_Bid_Auction
+    FOREIGN KEY (AuctionId) REFERENCES Sales.Auction (AuctionId);
+GO
+
+
+
+
+ALTER TABLE Sales.Bid
+    ADD CONSTRAINT FK_Bid_Member
+    FOREIGN KEY (MemberId) REFERENCES Membership.Member (MemberId);
+GO
+
+
+
+
+
+ALTER TABLE Sales.AuctionFollower
+    ADD CONSTRAINT FK_AuctionFollower_Member
+    FOREIGN KEY (MemberId) REFERENCES Membership.Member (MemberId);
+GO
+
+
+
+
+ALTER TABLE Sales.AuctionFollower
+    ADD CONSTRAINT FK_AuctionFollower_Auction
+    FOREIGN KEY (AuctionId) REFERENCES Sales.Auction (AuctionId);
+GO
+
