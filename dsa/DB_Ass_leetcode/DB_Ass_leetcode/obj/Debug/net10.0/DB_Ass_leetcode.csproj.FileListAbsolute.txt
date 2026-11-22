@@ -1,0 +1,16 @@
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\bin\Debug\net10.0\DB_Ass_leetcode.exe
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\bin\Debug\net10.0\DB_Ass_leetcode.deps.json
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\bin\Debug\net10.0\DB_Ass_leetcode.runtimeconfig.json
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\bin\Debug\net10.0\DB_Ass_leetcode.dll
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\bin\Debug\net10.0\DB_Ass_leetcode.pdb
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_leetcode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_leetcode.AssemblyInfoInputs.cache
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_leetcode.AssemblyInfo.cs
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_leetcode.csproj.CoreCompileInputs.cache
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_leetcode.sourcelink.json
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_leetcode.dll
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\refint\DB_Ass_leetcode.dll
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_leetcode.pdb
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_leetcode.genruntimeconfig.cache
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\ref\DB_Ass_leetcode.dll
+C:\Users\ayaan\Desktop\SimAssignments\ayaanegm108-web-Threads-Assignment\DB_Ass_leetcode\DB_Ass_leetcode\obj\Debug\net10.0\DB_Ass_l.E926A17D.Up2Date
