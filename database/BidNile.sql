@@ -356,3 +356,118 @@ ALTER TABLE Sales.AuctionFollower
     FOREIGN KEY (AuctionId) REFERENCES Sales.Auction (AuctionId);
 GO
 
+USE BidNile
+
+--Task 3 — ALTER: the business changes 
+--3.2
+ALTER TABLE Membership.Member
+    ADD AppLanguage CHAR(2) NOT NULL
+        CONSTRAINT DF_Member_AppLanguage DEFAULT 'ar'
+        CONSTRAINT CK_Member_AppLanguage CHECK (AppLanguage IN ('ar', 'en'));
+GO
+
+------------======================
+-- 3.3 Featured items: NOT NULL Yes/No column, default No
+ALTER TABLE Catalog.Item
+    ADD IsFeatured BIT NOT NULL
+        CONSTRAINT DF_Item_IsFeatured DEFAULT 0;
+
+
+--3.4
+EXEC sp_rename N'Sales.Bid.IpAddress', N'DeviceIp', N'COLUMN';
+GO
+/*
+EXEC sp_rename N'Logistics.Warehouse.Capacity', N'MaxItems', N'COLUMN'; error =>Object 'Logistics.Warehouse.Capacity' cannot be renamed because the object participates in enforced dependencies.
+--cause CK_Warehouse_Capacity<= using this column
+--solution to me :drop the check contraint then rename it
+*/
+ALTER TABLE Logistics.Warehouse
+    DROP CONSTRAINT CK_Warehouse_Capacity;
+GO
+
+EXEC sp_rename N'Logistics.Warehouse.Capacity', N'MaxItems', N'COLUMN';
+GO
+ALTER TABLE Logistics.Warehouse
+    ADD CONSTRAINT CK_Warehouse_MaxItems CHECK (MaxItems > 0);
+GO
+
+--3.5
+
+ALTER TABLE Membership.Member
+    ALTER COLUMN FullName NVARCHAR(150) NOT NULL;
+GO
+
+--3.6
+
+ALTER TABLE Logistics.Warehouse
+    DROP CONSTRAINT CK_Warehouse_MaxItems;
+GO
+ALTER TABLE Logistics.Warehouse
+    ALTER COLUMN MaxItems SMALLINT NOT NULL;
+GO
+ALTER TABLE Logistics.Warehouse
+    ADD CONSTRAINT CK_Warehouse_MaxItems
+    CHECK (MaxItems > 0 AND MaxItems <= 30000);
+GO
+
+--3.7
+
+ALTER TABLE Catalog.Category
+    DROP CONSTRAINT CK_Category_CommissionPct;
+GO
+ALTER TABLE Catalog.Category
+    ADD CONSTRAINT CK_Category_CommissionPct
+    CHECK (CommissionPct BETWEEN 0 AND 25);
+GO
+
+
+--3.8
+
+ALTER TABLE Sales.Auction
+    DROP CONSTRAINT CK_Auction_Status;
+GO
+ALTER TABLE Sales.Auction
+    ADD CONSTRAINT CK_Auction_Status
+    CHECK (Status IN ('PendingReview', 'Draft', 'Live', 'Ended', 'Cancelled'));
+GO
+ALTER TABLE Sales.Auction
+    DROP CONSTRAINT DF_Auction_Status;
+GO
+ALTER TABLE Sales.Auction
+    ADD CONSTRAINT DF_Auction_Status
+    DEFAULT 'PendingReview' FOR Status;
+GO
+--3.9
+
+ALTER TABLE Sales.Auction
+    ADD BuyNowPrice DECIMAL(12,2) NULL;
+GO
+
+ALTER TABLE Sales.Auction
+    WITH CHECK ADD CONSTRAINT CK_Auction_BuyNowPrice_Above_StartPrice
+    CHECK (BuyNowPrice IS NULL OR BuyNowPrice > StartPrice);
+GO
+--3.10
+
+ALTER TABLE Membership.Member
+    ADD CONSTRAINT UQ_Member_Mobile UNIQUE (Mobile);
+GO
+
+--3.11
+
+ALTER TABLE Membership.Member
+    ADD VerifiedAt DATETIME2(3) NULL;
+GO
+
+ALTER TABLE Membership.Member
+    DROP CONSTRAINT DF_Member_IsVerified;
+GO
+ALTER TABLE Membership.Member
+    DROP COLUMN IsVerified;
+GO
+--3.12
+
+CREATE SCHEMA Marketing;
+GO
+ALTER SCHEMA Marketing TRANSFER Sales.AuctionFollower;
+GO
